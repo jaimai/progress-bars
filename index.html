@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Progress_bar</title>
+</head>
+<body>
+    <h1>Progress bar</h1>
+    <div class="p-bar">
+        <div id="cursor" class="cursor"></div>
+    </div>
+    <p>loading...</p>
+     <div class="p-bar2">
+        <div id="cursor2" class="cursor2"></div>
+    </div>
+    <p>loading...</p>
+     <div class="p-bar3">
+        <div class="cursor3">
+            <div id="cursor3" class="cursor32"></div>
+        </div>
+    </div> 
+    <p>loading...</p>
+    <div class="mainD">
+        <div id="p1" class="p1"></div>
+        <div id="p2" class="p2"></div>
+        <div id="p3" class="p3"></div>
+    </div>
+    <script>
+        //init
+        document.getElementById('cursor').style.marginLeft = "0%";
+        document.getElementById('cursor2').style.width = "0%";
+        document.getElementById('p1').hidden = true;
+        document.getElementById('p2').hidden = true;
+        document.getElementById('p3').hidden = true;
+
+        let end = false;
+
+        function p1() {
+                let pro  = document.getElementById('cursor').style.marginLeft.split("%");
+                let number = parseInt(pro[0], 10);
+                if (number == 0) { end = false }; 
+                if (end == false && number < 98){
+                    number += 1;
+                    let numberString = number.toString();
+                    let value = numberString.concat("%");
+                    document.getElementById('cursor').style.marginLeft = value;
+                }
+                else {
+                    if (number > 0){
+                        end = true
+                        number -= 1;
+                        let numberString = number.toString();
+                        let value = numberString.concat("%");
+                        document.getElementById('cursor').style.marginLeft = value;
+                    }
+                }
+                
+            }
+
+            function p2() {
+                let pro  = document.getElementById('cursor2').style.width.split("%");
+                let number = parseInt(pro[0], 10);
+                if (number < 100){
+                    number += 1;
+                    let numberString = number.toString();
+                    let value = numberString.concat("%");
+                    document.getElementById('cursor2').style.width = value;
+                }  
+                else {
+                    clearInterval(temp2);
+                }  
+            }
+
+            function p3() {
+                setInterval(document.getElementById('p1').hidden = false, 1000);
+                setInterval(document.getElementById('p2').hidden = false, 2000);
+                setInterval(document.getElementById('p3').hidden = false, 3000);
+
+            }
+            let temp = setInterval(p1, 15);
+            let temp2 = setInterval(p2, 100);
+            //let temp3 = setInterval(p3, 1000);
+            p3();
+
+    </script>
+
+</body>
+</html>
+
